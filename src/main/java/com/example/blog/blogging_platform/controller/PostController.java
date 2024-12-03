@@ -29,7 +29,12 @@ public class PostController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+    public ResponseEntity<Post> deletePost(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(postService.deletePost(id));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+        return ResponseEntity.ok(postService.getPostById(id));
     }
 }
