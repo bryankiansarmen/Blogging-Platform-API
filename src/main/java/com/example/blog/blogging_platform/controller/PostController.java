@@ -27,4 +27,9 @@ public class PostController {
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody PostDto postDto) {
         return ResponseEntity.ok(postService.updatePost(id, postDto));
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(postService.deletePost(id));
+    }
 }
