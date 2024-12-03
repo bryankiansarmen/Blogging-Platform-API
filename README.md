@@ -78,26 +78,26 @@ src/
 ### POST ``/api/v1/posts``
 - **Description:** Create a new blog post.
 - **Request:**
-- ``POST`` body must include title, content, category, and tags.
-```json
-{
-"title": "My First Blog Post",
-"content": "This is the content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"]
-}
-```
+  - ``POST`` body must include title, content, category, and tags.
+      ```json
+      {
+          "title": "My First Blog Post",
+          "content": "This is the content of my first blog post.",
+          "category": "Technology",
+          "tags": ["Programming", "Tech"]
+      }
+      ```
 - **Response:**
   - ``201 Created`` with the newly created post.
     ```json
     {
-    "id": 1,
-    "title": "My First Blog Post",
-    "content": "This is the content of my first blog post.",
-    "category": "Technology",
-    "tags": ["Programming", "Tech"],
-    "createdAt": "2024-10-09T12:00:00Z",
-    "updatedAt": "2024-10-09T12:00:00Z"
+        "id": 1,
+        "title": "My First Blog Post",
+        "content": "This is the content of my first blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"],
+        "createdAt": "2024-10-09T12:00:00Z",
+        "updatedAt": "2024-10-09T12:00:00Z"
     }
     ```
   - ```400 Bad Request``` with error messages in case of validation errors.
@@ -109,13 +109,13 @@ src/
     - Example: ``GET /api/posts/1``
         ```json
         {
-        "id": 1,
-        "title": "My First Blog Post",
-        "content": "This is the content of my first blog post.",
-        "category": "Technology",
-        "tags": ["Programming", "Tech"],
-        "createdAt": "2024-10-09T12:00:00Z",
-        "updatedAt": "2024-10-09T12:00:00Z"
+            "id": 1,
+            "title": "My First Blog Post",
+            "content": "This is the content of my first blog post.",
+            "category": "Technology",
+            "tags": ["Programming", "Tech"],
+            "createdAt": "2024-10-09T12:00:00Z",
+            "updatedAt": "2024-10-09T12:00:00Z"
         }
         ```
     - ```404 Not Found```  if the blog post was not found.
@@ -127,24 +127,24 @@ src/
     - Example: ``GET /api/v1/posts``
         ```json
         [
-        {
-        "id": 1,
-        "title": "My First Blog Post",
-        "content": "This is the content of my first blog post.",
-        "category": "Technology",
-        "tags": ["Programming", "Tech"],
-        "createdAt": "2024-10-09T12:00:00Z",
-        "updatedAt": "2024-10-09T12:00:00Z"
-        },
-        {
-        "id": 2,
-        "title": "My Second Blog Post",
-        "content": "This is the content of my second blog post.",
-        "category": "Technology",
-        "tags": ["Programming", "Tech"],
-        "createdAt": "2024-10-09T12:30:00Z",
-        "updatedAt": "2024-10-09T12:30:00Z"
-        }
+            {
+                "id": 1,
+                "title": "My First Blog Post",
+                "content": "This is the content of my first blog post.",
+                "category": "Technology",
+                "tags": ["Programming", "Tech"],
+                "createdAt": "2024-10-09T12:00:00Z",
+                "updatedAt": "2024-10-09T12:00:00Z"
+            },
+            {
+                "id": 2,
+                "title": "My Second Blog Post",
+                "content": "This is the content of my second blog post.",
+                "category": "Technology",
+                "tags": ["Programming", "Tech"],
+                "createdAt": "2024-10-09T12:30:00Z",
+                "updatedAt": "2024-10-09T12:30:00Z"
+            }
         ]
         ```
 
@@ -154,23 +154,23 @@ src/
   - ``PUT``  body must include updated title, content, category, and tags.
     ```json
     {
-    "title": "My Updated Blog Post",
-    "content": "This is the updated content of my first blog post.",
-    "category": "Technology",
-    "tags": ["Programming", "Tech"]
+        "title": "My Updated Blog Post",
+        "content": "This is the updated content of my first blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"]
     }
     ```
 - **Response:**
   - ``200 OK`` with the updated blog post.
     ```json
     {
-    "id": 1,
-    "title": "My Updated Blog Post",
-    "content": "This is the updated content of my first blog post.",
-    "category": "Technology",
-    "tags": ["Programming", "Tech"],
-    "createdAt": "2024-10-09T12:00:00Z",
-    "updatedAt": "2024-10-09T12:30:00Z"
+        "id": 1,
+        "title": "My Updated Blog Post",
+        "content": "This is the updated content of my first blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"],
+        "createdAt": "2024-10-09T12:00:00Z",
+        "updatedAt": "2024-10-09T12:30:00Z"
     }
     ```
   - ``400 Bad Request`` with error messages in case of validation errors.
