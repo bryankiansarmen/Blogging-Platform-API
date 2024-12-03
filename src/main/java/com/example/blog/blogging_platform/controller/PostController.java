@@ -1,14 +1,12 @@
 package com.example.blog.blogging_platform.controller;
 
-import com.example.blog.blogging_platform.dto.request.CreatePostDto;
+import com.example.blog.blogging_platform.dto.request.PostDto;
 import com.example.blog.blogging_platform.model.Post;
 import com.example.blog.blogging_platform.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/post")
@@ -21,7 +19,12 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody CreatePostDto createPostDto) {
-        return ResponseEntity.ok(postService.createPost(createPostDto));
+    public ResponseEntity<Post> createPost(@RequestBody PostDto postDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postDto));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody PostDto postDto) {
+        return ResponseEntity.ok(postService.updatePost(id, postDto));
     }
 }

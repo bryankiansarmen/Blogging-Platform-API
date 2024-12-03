@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CreatePostDto {
+public class PostDto {
     private String title;
     private String content;
     private String category;

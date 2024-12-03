@@ -22,7 +22,6 @@ public class Post {
     private String title;
     private String content;
     private String category;
-    @ElementCollection
     private List<String> tags;
     @CreationTimestamp
     private LocalDateTime createdAt;
