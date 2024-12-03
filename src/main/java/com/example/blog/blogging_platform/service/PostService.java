@@ -1,37 +1,36 @@
 package com.example.blog.blogging_platform.service;
 
 import com.example.blog.blogging_platform.dto.request.PostDto;
+import com.example.blog.blogging_platform.exception.ResourceNotFoundException;
+import com.example.blog.blogging_platform.mapper.PostMapper;
 import com.example.blog.blogging_platform.model.Post;
 import com.example.blog.blogging_platform.repository.PostRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final PostMapper postMapper;
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostMapper postMapper) {
         this.postRepository = postRepository;
+        this.postMapper = postMapper;
     }
 
+    @Transactional
     public Post createPost(PostDto postDto) {
-        // create a Post object from the DTO using the Builder pattern
-        Post post = Post.builder()
-                .title(postDto.getTitle())
-                .content(postDto.getContent())
-                .category(postDto.getCategory())
-                .tags(postDto.getTags())
-                .build();
-
+        Post post = postMapper.toEntity(postDto);
         return postRepository.save(post);
     }
 
+    @Transactional
     public Post updatePost(Long id, PostDto postDto) {
-        Post existingPost = postRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found!"));
+        Post existingPost = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post not found with id: " + id));
 
         existingPost.setTitle(postDto.getTitle());
         existingPost.setContent(postDto.getContent());
@@ -41,15 +40,14 @@ public class PostService {
         return postRepository.save(existingPost);
     }
 
-    public Post deletePost(Long id) {
-        Post existingPost = postRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found!"));
+    @Transactional
+    public void deletePost(Long id) {
+        postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post not found with id: " + id));
         postRepository.deleteById(id);
-
-        return existingPost;
     }
 
     public Post getPostById(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found!"));
+        return postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post not found with id: " + id));
     }
 
     public List<Post> getAllPost() {

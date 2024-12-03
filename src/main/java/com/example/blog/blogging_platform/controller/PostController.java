@@ -3,6 +3,8 @@ package com.example.blog.blogging_platform.controller;
 import com.example.blog.blogging_platform.dto.request.PostDto;
 import com.example.blog.blogging_platform.model.Post;
 import com.example.blog.blogging_platform.service.PostService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,22 +23,23 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody PostDto postDto) {
+    public ResponseEntity<Post> createPost(@RequestBody @Valid PostDto postDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(postDto));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody PostDto postDto) {
+    public ResponseEntity<Post> updatePost(@PathVariable @Positive Long id, @RequestBody @Valid PostDto postDto) {
         return ResponseEntity.ok(postService.updatePost(id, postDto));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Post> deletePost(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(postService.deletePost(id));
+    public ResponseEntity<Void> deletePost(@PathVariable @Positive Long id) {
+        postService.deletePost(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+    public ResponseEntity<Post> getPostById(@PathVariable @Positive Long id) {
         return ResponseEntity.ok(postService.getPostById(id));
     }
 
