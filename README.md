@@ -73,7 +73,7 @@ src/
 
 ---
 
-## ️  API Endpoints
+## API Endpoints
 
 ### POST ``/api/v1/posts``
 - **Description:** Create a new blog post.
@@ -88,98 +88,98 @@ src/
 }
 ```
 - **Response:**
-- ``201 Created`` with the newly created post.
-```json
-{
-"id": 1,
-"title": "My First Blog Post",
-"content": "This is the content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"],
-"createdAt": "2024-10-09T12:00:00Z",
-"updatedAt": "2024-10-09T12:00:00Z"
-}
-```
-- ```400 Bad Request``` with error messages in case of validation errors.
+  - ``201 Created`` with the newly created post.
+    ```json
+    {
+    "id": 1,
+    "title": "My First Blog Post",
+    "content": "This is the content of my first blog post.",
+    "category": "Technology",
+    "tags": ["Programming", "Tech"],
+    "createdAt": "2024-10-09T12:00:00Z",
+    "updatedAt": "2024-10-09T12:00:00Z"
+    }
+    ```
+  - ```400 Bad Request``` with error messages in case of validation errors.
 
 ### GET ``/api/v1/posts/{id}``
 - **Description:** Retrieve a post by its ID.
 - **Response:**
-- ``200 OK`` with the post details.
-- Example: ``GET /api/posts/1``
-```json
-{
-"id": 1,
-"title": "My First Blog Post",
-"content": "This is the content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"],
-"createdAt": "2024-10-09T12:00:00Z",
-"updatedAt": "2024-10-09T12:00:00Z"
-}
-```
-- ```404 Not Found```  if the blog post was not found.
+  - ``200 OK`` with the post details.
+    - Example: ``GET /api/posts/1``
+        ```json
+        {
+        "id": 1,
+        "title": "My First Blog Post",
+        "content": "This is the content of my first blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"],
+        "createdAt": "2024-10-09T12:00:00Z",
+        "updatedAt": "2024-10-09T12:00:00Z"
+        }
+        ```
+    - ```404 Not Found```  if the blog post was not found.
 
 ### GET ``/api/v1/posts?term={term}``
 - **Description:** Search posts by title, content, or category.
 - **Response:**
-- ``200 OK`` with a list of matching posts or all posts if no term is provided.
-- Example: ``GET /api/v1/posts``
-```json
-[
-{
-"id": 1,
-"title": "My First Blog Post",
-"content": "This is the content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"],
-"createdAt": "2024-10-09T12:00:00Z",
-"updatedAt": "2024-10-09T12:00:00Z"
-},
-{
-"id": 2,
-"title": "My Second Blog Post",
-"content": "This is the content of my second blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"],
-"createdAt": "2024-10-09T12:30:00Z",
-"updatedAt": "2024-10-09T12:30:00Z"
-}
-]
-```
+  - ``200 OK`` with a list of matching posts or all posts if no term is provided.
+    - Example: ``GET /api/v1/posts``
+        ```json
+        [
+        {
+        "id": 1,
+        "title": "My First Blog Post",
+        "content": "This is the content of my first blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"],
+        "createdAt": "2024-10-09T12:00:00Z",
+        "updatedAt": "2024-10-09T12:00:00Z"
+        },
+        {
+        "id": 2,
+        "title": "My Second Blog Post",
+        "content": "This is the content of my second blog post.",
+        "category": "Technology",
+        "tags": ["Programming", "Tech"],
+        "createdAt": "2024-10-09T12:30:00Z",
+        "updatedAt": "2024-10-09T12:30:00Z"
+        }
+        ]
+        ```
 
 ### PUT ``/api/v1/posts/{id}``
 - **Description:** Update an existing post.
 - **Request:**
-- ``PUT``  body must include updated title, content, category, and tags.
-```json
-{
-"title": "My Updated Blog Post",
-"content": "This is the updated content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"]
-}
-```
+  - ``PUT``  body must include updated title, content, category, and tags.
+    ```json
+    {
+    "title": "My Updated Blog Post",
+    "content": "This is the updated content of my first blog post.",
+    "category": "Technology",
+    "tags": ["Programming", "Tech"]
+    }
+    ```
 - **Response:**
-- ``200 OK`` with the updated blog post.
-```json
-{
-"id": 1,
-"title": "My Updated Blog Post",
-"content": "This is the updated content of my first blog post.",
-"category": "Technology",
-"tags": ["Programming", "Tech"],
-"createdAt": "2024-10-09T12:00:00Z",
-"updatedAt": "2024-10-09T12:30:00Z"
-}
-```
-- ``400 Bad Request`` with error messages in case of validation errors.
-- ``404 Not Found`` if the blog post was not found.
+  - ``200 OK`` with the updated blog post.
+    ```json
+    {
+    "id": 1,
+    "title": "My Updated Blog Post",
+    "content": "This is the updated content of my first blog post.",
+    "category": "Technology",
+    "tags": ["Programming", "Tech"],
+    "createdAt": "2024-10-09T12:00:00Z",
+    "updatedAt": "2024-10-09T12:30:00Z"
+    }
+    ```
+  - ``400 Bad Request`` with error messages in case of validation errors.
+  - ``404 Not Found`` if the blog post was not found.
 
 ### DELETE ``/api/v1/posts/{id}``
 - **Description:** Delete a post by its ID.
 - **Response:**
-- ``204 No Content`` if the blog post was successfully deleted.
-- ``404 Not Found`` if the blog post was not found.
+  - ``204 No Content`` if the blog post was successfully deleted.
+  - ``404 Not Found`` if the blog post was not found.
 
 ---
