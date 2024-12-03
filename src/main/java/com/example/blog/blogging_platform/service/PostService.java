@@ -6,6 +6,7 @@ import com.example.blog.blogging_platform.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +50,13 @@ public class PostService {
 
     public Post getPostById(Long id) {
         return postRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found!"));
+    }
+
+    public List<Post> getAllPost() {
+        return postRepository.findAll();
+    }
+
+    public List<Post> getPostByCustomSearch(String term) {
+        return postRepository.findByCustomSearch(term);
     }
 }

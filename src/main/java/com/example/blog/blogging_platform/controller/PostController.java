@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/post")
 public class PostController {
@@ -36,5 +38,14 @@ public class PostController {
     @GetMapping("{id}")
     public ResponseEntity<Post> getPostById(@PathVariable Long id) {
         return ResponseEntity.ok(postService.getPostById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Post>> getPost(@RequestParam(required = false) String term) {
+        if (term == null) {
+            return ResponseEntity.ok(postService.getAllPost());
+        }
+
+        return ResponseEntity.ok(postService.getPostByCustomSearch(term));
     }
 }
