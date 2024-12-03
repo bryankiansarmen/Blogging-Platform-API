@@ -183,3 +183,5 @@ src/
   - ``404 Not Found`` if the blog post was not found.
 
 ---
+
+Sample solution for the [Blogging Platform API](https://roadmap.sh/projects/blogging-platform-api) challenge from [roadmap.sh](https://roadmap.sh).
